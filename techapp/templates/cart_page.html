@@ -1,0 +1,84 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Cart</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .cart-container {
+            max-width: 900px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+        .cart-item img {
+            border-radius: 10px;
+        }
+        .cart-summary {
+            background: #f1f1f1;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        .btn-primary {
+            background: #007bff;
+            border: none;
+            transition: background 0.3s;
+        }
+        .btn-primary:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="cart-container mt-5">
+        <h2 class="text-center mb-4 text-primary">My Cart</h2>
+        <div class="row">
+            <div class="col-md-8">
+                {% for item in cart_items %}
+                    <div class="d-flex border p-3 mb-3 rounded cart-item bg-light">
+                        {% if item.product.image %}
+                            <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" style="width: 150px; height: auto;" class="me-3">
+                        {% endif %}
+                        <div>
+                            <h5 class="fw-bold">{{ item.product.name }}</h5>
+                            <p class="text-muted">Price: <span class="text-success fw-bold">${{ item.product.price }}</span></p>
+                            <p>Quantity: {{ item.quantity }}</p>
+                            <form action="{% url 'update_cart' item.id %}" method="POST" class="d-flex">
+                                {% csrf_token %}
+                                <input type="number" name="quantity" value="{{ item.quantity }}" min="1" class="form-control me-2" style="width: 80px;">
+                                <button type="submit" class="btn btn-success btn-sm">Update</button>
+                            </form>
+                            <form method="POST" action="{% url 'remove_from_cart' item.id %}">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-danger btn-sm mt-2">Remove</button>
+                            </form>
+                        </div>
+                        <div class="ms-auto align-self-center">
+                            <h5 class="text-primary">Total: ${{ item.total }}</h5>
+                        </div>
+                    </div>
+                {% empty %}
+                    <p class="text-center text-muted">Your cart is empty</p>
+                {% endfor %}
+            </div>
+            <div class="col-md-4">
+                <div class="cart-summary text-center">
+                    <h4 class="fw-bold">Order Summary</h4>
+                    <hr>
+                    <h5>Total Quantity: <span class="text-success">{{ total_quantity }}</span></h5>
+                    <h5>Total Price: <span class="text-success">${{ total_price }}</span></h5>
+                    <button class="btn btn-lg btn-primary mt-4 w-100">Proceed to Checkout</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
