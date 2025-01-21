@@ -101,50 +101,103 @@
       </div>
     </div>
 
-    <section class="ftco-section ftco-cart">
-		<div class="container mt-5">
-			<h4 class="text-center">My Cart</h4>
-			<div class="row">
-				<div class="col-md-8">
-					{% for item in cart_items %}
-						<div class="d-flex border p-3 mb-3">
-							{% if item.product.image %}
-								<img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" style="width: 160px; height: auto;">
-							<!-- {% else %}
-								<img src="{% static 'images/b816d5fd336ad874220c81d59ba6fad8-removebg-preview.png' %}" alt="Default Image" style="width: 150px; height: auto;">
-							{% endif %} -->
-							<div class="ml-3">
-								<h5>{{ item.product.name }}</h5>
-								<p>Price: ${{ item.product.price }}</p>
-								<p>Quantity: {{ item.quantity }}</p>
-								<form action="{% url 'update_cart' item.id %}" method="POST">
-									{% csrf_token %}
-									<input type="number" name="quantity" value="{{ item.quantity }}" min="1" class="form-control" style="width: 80px; display: inline-block;">
-									<button type="submit" class="btn  btn-success">Update</button>
-								</form>
-								<form method="POST" action="{% url 'remove_from_cart' item.id %}">
-									{% csrf_token %}
-									<button type="submit" class="btn  btn-danger mt-2">Remove</button>
-								</form>
-							</div>
-							<div class="ml-auto">
-								<h5>Total: ${{ item.total }}</h5>
-							</div>
+	<section class="ftco-section ftco-cart">
+		<style>
+			.cart-container {
+				max-width: 900px;
+				margin: auto;
+				background: #fff;
+				padding: 30px;
+				border-radius: 15px;
+				box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+			}
+			.cart-item {
+				display: flex;
+				align-items: center;
+				padding: 20px;
+				border-bottom: 1px solid #ddd;
+				transition: transform 0.3s ease;
+			}
+			.cart-item:hover {
+				transform: scale(1.02);
+			}
+			.cart-item img {
+				border-radius: 15px;
+				width: 120px;
+				height: auto;
+				box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+			}
+			.cart-item-details {
+				flex: 1;
+				margin-left: 20px;
+			}
+			.cart-summary {
+				padding: 20px;
+				border-radius: 15px;
+				background: linear-gradient(to right, #007bff, #0056b3);
+				color: #fff;
+				text-align: center;
+				box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+			}
+			.btn-primary {
+				background: #28a745;
+				border: none;
+				padding: 15px 20px;
+				font-size: 18px;
+				font-weight: bold;
+				border-radius: 50px;
+				transition: background 0.3s ease;
+			}
+			.btn-primary:hover {
+				background: #218838;
+			}
+		</style>
+		<div class="cart-container mt-5">
+			<h2 class="text-center mb-4 text-primary fw-bold">My Shopping Cart</h2>
+			{% for item in cart_items %}
+				<div class="cart-item">
+					<img src="{{ item.product.image.url }}" alt="{{ item.product.name }}">
+					<div class="cart-item-details">
+						<h5 class="fw-bold text-dark">{{ item.product.name }}</h5>
+						<p class="text-muted">Price: <span class="text-success">${{ item.product.price }}</span></p>
+						<p>Quantity: {{ item.quantity }}</p>
+						<div class="d-flex align-items-center">
+							<form action="{% url 'update_cart' item.id %}" method="POST" class="me-2">
+								{% csrf_token %}
+								<input type="number" name="quantity" value="{{ item.quantity }}" min="1" class="form-control" style="width: 80px;">
+							</form>
+							<form action="{% url 'remove_from_cart' item.id %}" method="POST">
+								{% csrf_token %}
+								<button type="submit" class="btn btn-danger btn-sm">Remove</button>
+							</form>
 						</div>
-					{% empty %}
-						<p class="text-center">Your cart is empty</p>
-					{% endfor %}
-				</div>
-				<div class="col-md-4">
-					<div class="cart-summary p-3 border">
-						<h5>Total Quantity: {{ total_quantity }}</h5>
-						<h5>Total Price: ${{ total_price }}</h5>
-						<button class="btn btn-lg btn-primary mt-4">Proceed to Checkout</button>
+					</div>
+					<div class="ms-auto align-self-center">
+						<h5 class="text-primary fw-bold">${{ item.total }}</h5>
 					</div>
 				</div>
+			{% empty %}
+				<p class="text-center text-muted">Your cart is empty</p>
+			{% endfor %}
+			<div class="cart-summary mt-4">
+				<h4 class="fw-bold">Order Summary</h4>
+				<hr>
+				<p>Total Items: <span class="fw-bold">{{ total_quantity }}</span></p>
+				<p>Total Price: <span class="fw-bold">${{ total_price }}</span></p>
+				<button class="btn btn-lg btn-primary w-100">Proceed to Checkout</button>
 			</div>
 		</div>
-		</section>
+	</section>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 		
 
     <footer class="ftco-footer ftco-section">

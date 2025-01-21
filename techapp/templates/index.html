@@ -70,7 +70,7 @@
 
 	      <div class="collapse navbar-collapse"  id="ftco-nav">
 	        <ul class="navbar-nav ml-auto">
-	          <li class="nav-item active"><a href="index.html" class="nav-link">Home</a></li>
+	          <li class="nav-item active"><a href="{% url 'index' %}" class="nav-link">Home</a></li>
 	          <li class="nav-item dropdown">
               <a class="nav-link" href="{% url 'shop' %}"  aria-haspopup="true" aria-expanded="false">Shop</a>
               <!-- <div class="dropdown-menu" aria-labelledby="dropdown04">
@@ -98,62 +98,53 @@
     <!-- END nav -->
 
     <section id="home-section" class="hero">
-		  <div class="home-slider owl-carousel">
-	      <div class="slider-item js-fullheight">
-	      	<div class="overlay"></div>
-	        <div class="container-fluid p-0">
-	          <div class="row d-md-flex no-gutters slider-text align-items-center justify-content-end" data-scrollax-parent="true">
-	          	<img class="one-third order-md-last img-fluid" src="{% static '/images/HD-wallpaper-samsung-galaxy-s23-and-s23-plus-smartphones-ultra-computers-hardware-galaxy-plus-samsung-smartphones-removebg-preview.png' %}" alt="">
-		          <div class="one-forth d-flex align-items-center ftco-animate" data-scrollax=" properties: { translateY: '70%' }">
-		          	<div class="text">
-		          		<span class="subheading">#New Arrival</span>
-		          		<div class="horizontal">
-				            <h1 class="mb-4 mt-3">Samsung Galaxy S23</h1>
-				            <p class="mb-4">Experience the next level of innovation with the Samsung Galaxy S23. Equipped with cutting-edge technology, a stunning display, and a powerful processor, it's designed to elevate your everyday life.</p><br><br>
-
-							<!-- ------------------------------ -->
-				            
-							<div>
-							 <a href="{% url 'register' %}" class="btn-custom" style="margin-left: 150px;">Login / Register</a> 
-						
-								<!-- You can remove these commented-out input fields if not needed -->
-								<!-- <input type="text" placeholder="First_name" class="form-control"> -->
-								<!-- <input type="text" placeholder="last_name" class="form-control mt-3"> -->
-								<!-- <input type="email" placeholder="email" class="form-control mt-3"> -->
-								<!-- <input type="password" placeholder="password" class="form-control mt-3"> -->
-							</form>
-						   <!-- <p><a href="" class="btn-custom" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" style="margin-left: 130px; width: 90px;">Register now</a></p> -->
-				          </div>
-		            </div>
-		          </div>
-	        	</div>
-	        </div>
-	      </div>
-
-	      <div class="slider-item js-fullheight">
-	      	<div class="overlay"></div>
-	        <div class="container-fluid p-0">
-	          <div class="row d-flex no-gutters slider-text align-items-center justify-content-end" data-scrollax-parent="true">
-	          	<img class="one-third order-md-last img-fluid" src="{% static 'images/pink-pair-headphones-with-brand-name-sony-back_835197-649-removebg-preview.png' %}" alt="">
-		          <div class="one-forth d-flex align-items-center ftco-animate" data-scrollax=" properties: { translateY: '70%' }">
-		          	<div class="text">
-		          		<span class="subheading">#New Arrival</span>
-		          		<div class="horizontal">
-				            <h1 class="mb-4 mt-3">Wireless Headphones</h1>
-				            <p class="mb-4">Immerse yourself in pure sound with our latest wireless noise-cancelling headphones. Designed for comfort and equipped with superior audio quality, these headphones are perfect for music, calls, and everything in between.</p><br><br>
-				            
-				        <p><a href="{% url 'register' %}" class="btn-custom" style="margin-left: 150px;">Login / Register</a></p> 
-
-
-							<!-- <p><a href="#" class="btn-custom" style="margin-left: 100px; width: 90px;">Register now</a></p> -->
-				          </div>
-		            </div>
-		          </div>
-	        	</div>
-	        </div>
-	      </div>
-	    </div>
-    </section>
+		<div class="home-slider owl-carousel">
+		  <!-- First carousel item -->
+		  <div class="slider-item js-fullheight">
+			<div class="overlay"></div>
+			<div class="container-fluid p-0">
+			  <div class="row d-md-flex no-gutters slider-text align-items-center justify-content-end" data-scrollax-parent="true">
+				<img class="one-third order-md-last img-fluid" src="{% static '/images/HD-wallpaper-samsung-galaxy-s23-and-s23-plus-smartphones-ultra-computers-hardware-galaxy-plus-samsung-smartphones-removebg-preview.png' %}" alt="">
+				<div class="one-forth d-flex align-items-center ftco-animate" data-scrollax=" properties: { translateY: '70%' }">
+				  <div class="text">
+					<span class="subheading">#New Arrival</span>
+					<div class="horizontal">
+					  <h1 class="mb-4 mt-3">Samsung Galaxy S23</h1>
+					  <p class="mb-4">Experience the next level of innovation with the Samsung Galaxy S23. Equipped with cutting-edge technology, a stunning display, and a powerful processor, it's designed to elevate your everyday life.</p><br><br>
+	  
+					  <div>
+						<a href="{% url 'register' %}" class="btn-custom" style="margin-left: 150px;">Login / Register</a> 
+					  </div>
+					</div>
+				  </div>
+				</div>
+			  </div>
+			</div>
+		  </div>
+	  
+		  <!-- Second carousel item -->
+		  <div class="slider-item js-fullheight">
+			<div class="overlay"></div>
+			<div class="container-fluid p-0">
+			  <div class="row d-flex no-gutters slider-text align-items-center justify-content-end" data-scrollax-parent="true">
+				<img class="one-third order-md-last img-fluid" src="{% static 'images/pink-pair-headphones-with-brand-name-sony-back_835197-649-removebg-preview.png' %}" alt="">
+				<div class="one-forth d-flex align-items-center ftco-animate" data-scrollax=" properties: { translateY: '70%' }">
+				  <div class="text">
+					<span class="subheading">#New Arrival</span>
+					<div class="horizontal">
+					  <h1 class="mb-4 mt-3">Wireless Headphones</h1>
+					  <p class="mb-4">Immerse yourself in pure sound with our latest wireless noise-cancelling headphones. Designed for comfort and equipped with superior audio quality, these headphones are perfect for music, calls, and everything in between.</p><br><br>
+	  
+					  <p><a href="{% url 'register' %}" class="btn-custom" style="margin-left: 150px;">Login / Register</a></p>
+					</div>
+				  </div>
+				</div>
+			  </div>
+			</div>
+		  </div>
+		</div>
+	  </section>
+	  
 
     <section class="ftco-section ftco-no-pt ftco-no-pb">
 			<div class="container">
@@ -581,6 +572,19 @@
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
   <script src="{% static 'js/google-map.js' %}"></script>
   <script src="{% static 'js/main.js' %}"></script>
+  <script>
+	$('.home-slider').owlCarousel({
+		items: 1,
+		loop: true,
+		margin: 0,
+		autoplay: true,
+		smartSpeed: 1000,
+		autoplayTimeout: 3000,
+		nav: true,
+		dots: false,
+	  });
+	  
+  </script>
     
   </body>
 </html>
